@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/VulkanTutorial.dir/VulkanTutorial.cpp.o  -o VulkanTutorial  -L/etc/explicit_layer.d -Wl,-rpath,/etc/explicit_layer.d -lvulkan -lglfw 

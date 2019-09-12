@@ -1,0 +1,35 @@
+﻿  shader.vert
+EXEC : warning : shader.vert:3: '#extension' : extension not supported: GL_KHR_vulkan_glsl
+  
+  shader.frag
+EXEC : warning : shader.frag:3: '#extension' : extension not supported: GL_KHR_vulkan_glsl
+  
+  Press any key to continue . . . 
+  VulcanTutorial.cpp
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\easyimage.h(71): warning C4244: 'argument': conversion from 'VkDeviceSize' to 'size_t', possible loss of data
+  GLM: GLM_GTX_hash is an experimental extension and may change in the future. Use #define GLM_ENABLE_EXPERIMENTAL before including it, if you really want to use it.
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(96): warning C4018: '<': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(192): warning C4018: '>': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(193): warning C4018: '>': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(252): warning C4018: '<': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(270): warning C4018: '<': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(299): warning C4018: '<': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(387): warning C4018: '<': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(537): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(538): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(847): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(848): warning C4244: '=': conversion from 'uint32_t' to 'float', possible loss of data
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(930): warning C4018: '<': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(985): warning C4244: 'initializing': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(1046): warning C4018: '<': signed/unsigned mismatch
+c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulkanutils.h(209): warning C4244: 'argument': conversion from 'VkDeviceSize' to 'size_t', possible loss of data
+  c:\users\lauri\source\repos\vulcantutorial\vulcantutorial\vulcantutorial.cpp(723): note: see reference to function template instantiation 'void createAndUploadBuffer<Vertex>(VkDevice,VkPhysicalDevice,VkQueue,VkCommandPool,std::vector<Vertex,std::allocator<_Ty>>,VkBufferUsageFlags,VkBuffer &,VkDeviceMemory)' being compiled
+          with
+          [
+              _Ty=Vertex
+          ]
+  VulcanTutorial.vcxproj -> C:\Users\Lauri\source\repos\VulcanTutorial\Debug\VulcanTutorial.exe

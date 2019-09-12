@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="VulkanTutorial" targetName="VulkanTutorial" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Release" CONFIG_NAME="Release" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="37f11df4-bc62-4726-bd40-f6af3ca3308e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/VulcanTutorial.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.Build.CppClean.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.tlog/CL.command.1.tlog" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.tlog/CL.read.1.tlog" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.tlog/CL.write.1.tlog" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.tlog/VulcanTutorial.lastbuildstate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.tlog/link.command.1.tlog" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.tlog/link.read.1.tlog" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/VulcanTutorial.tlog/link.write.1.tlog" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/vc141.idb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Debug/vc141.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DepthImage.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EasyImage.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mesh.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Vertex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VulcanTutorial.vcxproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VulcanTutorial.vcxproj.filters" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VulcanTutorial.vcxproj.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VulkanTutorial.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VulkanUtils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/CXX.includecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/VulkanTutorial.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanTutorial.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Project.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/VulkanTutorial" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/VulkanTutorial.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/3.14.5/CompilerIdCXX/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/CXX.includecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/VulkanTutorial.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/VulkanTutorial.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/progress.marks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/VulkanTutorial" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/VulkanTutorial.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-release/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frag.spv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/40f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meshes/dragon.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meshes/testi.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runCompiler.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runCompiler.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shader.frag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shader.vert" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stb_image.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tiny_obj_loader.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vert.spv" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectId" id="1QaX0VpP770IIfdI4ConZP9zMDU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="dynamic.analysis.tools.valgrind" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="VulkanTutorial" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="VulkanTutorial" TARGET_NAME="VulkanTutorial" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="VulkanTutorial" RUN_TARGET_NAME="VulkanTutorial">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="37f11df4-bc62-4726-bd40-f6af3ca3308e" name="Default Changelist" comment="" />
+      <created>1568009548612</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568009548612</updated>
+      <workItem from="1568009549925" duration="2294000" />
+      <workItem from="1568109156445" duration="1096000" />
+      <workItem from="1568194179278" duration="65000" />
+      <workItem from="1568222936769" duration="2904000" />
+      <workItem from="1568226771843" duration="342000" />
+      <workItem from="1568227125529" duration="508000" />
+      <workItem from="1568227645569" duration="1328000" />
+      <workItem from="1568264494759" duration="685000" />
+      <workItem from="1568280105253" duration="51000" />
+      <workItem from="1568294803988" duration="172000" />
+      <workItem from="1568295093472" duration="1966000" />
+      <workItem from="1568298415370" duration="97000" />
+      <workItem from="1568298523342" duration="5839000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="this" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
