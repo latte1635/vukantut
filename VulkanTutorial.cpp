@@ -3,6 +3,7 @@
 #include "DepthImage.h"
 #include "Vertex.h"
 #include "Mesh.h"
+#include "Camera.h"
 
 #include <chrono>
 
@@ -33,8 +34,8 @@ VkDeviceMemory uniformBufferMemory;
 uint32_t amountOfImagesInSwapchain = 0;
 GLFWwindow *window;
 
-uint32_t width = 400;
-uint32_t height = 300;
+uint32_t width = 800;
+uint32_t height = 600;
 const VkFormat ourFormat = VK_FORMAT_B8G8R8A8_UNORM; // TODO: civ
 
 struct UniformBufferObject {
@@ -52,8 +53,9 @@ VkDescriptorSet descriptorSet;
 
 EasyImage pika;
 DepthImage depthImage;
-Mesh dragon;
-
+std::vector<Mesh> meshes;
+Mesh cube("../meshes/testi.obj");
+Mesh dragon("../meshes/dragon.obj");
 
 std::vector<Vertex> vertices = {};
 
@@ -87,7 +89,7 @@ void printStats(VkPhysicalDevice &device) {
 
 	std::cout << "Amount of Queue Families:      " << amountOfQueueFamilies << std::endl;
 
-	for (int i = 0; i < amountOfQueueFamilies; i++) {
+	for (unsigned int i = 0; i < amountOfQueueFamilies; i++) {
 		std::cout << std::endl;
 		std::cout << "Queue Family #" << i << std::endl;
 		std::cout << "VK_QUEUE_GRAPHICS_BIT       " << ((familyProperties[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) != 0) << std::endl;
@@ -183,7 +185,6 @@ void onWindowResized(GLFWwindow *window, int w, int h) {
 void startGlfw() {
 	glfwInit();
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	//glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 	window = glfwCreateWindow(width, height, "Vulkan Test", nullptr, nullptr);
 	glfwSetWindowSizeCallback(window, onWindowResized);
@@ -227,7 +228,7 @@ void printInstanceLayers() {
 	vkEnumerateInstanceLayerProperties(&amountOfLayers, layers);
 
 	std::cout << "Amount of Instance Layers: " << amountOfLayers << std::endl;
-	for (int i = 0; i < amountOfLayers; i++) {
+	for (unsigned int i = 0; i < amountOfLayers; i++) {
 		std::cout << std::endl;
 		std::cout << "Name:         " << layers[i].layerName << std::endl;
 		std::cout << "Spec Version: " << layers[i].specVersion << std::endl;
@@ -245,7 +246,7 @@ void printInstanceExtensions() {
 
 	std::cout << std::endl;
 	std::cout << "Amount of Extensions: " << amountOfExtensions << std::endl;
-	for (int i = 0; i < amountOfExtensions; i++) {
+	for (unsigned int i = 0; i < amountOfExtensions; i++) {
 		std::cout << std::endl;
 		std::cout << "Name: " << extensions[i].extensionName << std::endl;
 		std::cout << "Spec Version: " << extensions[i].specVersion << std::endl;
@@ -274,7 +275,7 @@ std::vector<VkPhysicalDevice> getAllPhysicalDevices() {
 
 void printStatsOfAllPhysicalDevices() {
 	
-	for (int i = 0; i < physicalDevices.size(); i++)
+	for (unsigned int i = 0; i < physicalDevices.size(); i++)
 		printStats(physicalDevices.at(i));
 }
 
@@ -361,7 +362,7 @@ void createImageViews() {
 	ASSERT_VULKAN(result);
 
 	imageViews = new VkImageView[amountOfImagesInSwapchain];
-	for (int i = 0; i < amountOfImagesInSwapchain; i++) {
+	for (unsigned int i = 0; i < amountOfImagesInSwapchain; i++) {
 
 		createImageView(device, swapchainImages[i], ourFormat, VK_IMAGE_ASPECT_COLOR_BIT, imageViews[i]);
 
@@ -463,9 +464,10 @@ void createDescriptorSetLayout() {
 }
 
 void createPipeline() {
-    //system("./runCompiler.sh");
-	std::vector<char> shaderCodeVert = readFile("vert.spv");
-	std::vector<char> shaderCodeFrag = readFile("frag.spv");
+    //system("../runCompiler.sh");
+
+    std::vector<char> shaderCodeVert = readFile("../vert.spv");
+	std::vector<char> shaderCodeFrag = readFile("../frag.spv");
 
 	createShaderModule(shaderCodeVert, &shaderModuleVert);
 	createShaderModule(shaderCodeFrag, &shaderModuleFrag);
@@ -683,26 +685,29 @@ void createCommandBuffers() {
 	ASSERT_VULKAN(result);
 }
 
-
-
-
 void loadTexture() {
-	pika.load("images/40f.png");
+	pika.load("../images/40f.png");
 	pika.upload(device, physicalDevices[0], commandPool, queue);
 }
 
-void loadMesh() {
-	dragon.create("meshes/testi.obj");
-	vertices = dragon.getVertices();
-	indices = dragon.getIndices();
+void loadMesh(Mesh mesh) {
+    mesh.create();
+    vertices = mesh.getVertices();
+    indices = mesh.getIndices();
 }
 
-void createVertexBuffer() {
-	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, vertices, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, vertexBuffer, vertexBufferDeviceMemory);
+void loadMeshes(std::vector<Mesh>& meshList){
+    for (Mesh mesh : meshList) {
+        loadMesh(mesh);
+    }
 }
 
-void createIndexBuffer() {
-	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, indices, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, indexBuffer, indexBufferDeviceMemory);
+void createVertexBuffer(std::vector<Vertex> _vertices) {
+	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, _vertices, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, vertexBuffer, vertexBufferDeviceMemory);
+}
+
+void createIndexBuffer(std::vector<uint32_t> _indices) {
+	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, _indices, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, indexBuffer, indexBufferDeviceMemory);
 }
 
 void createUniformBuffer() {
@@ -860,7 +865,6 @@ void createSemaphores() {
 	result = vkCreateSemaphore(device, &semaphoreCreateInfo, nullptr, &semaphoreRenderingDone);
 	ASSERT_VULKAN(result);
 }
-
 void startVulkan() {
 	createInstance();
 	physicalDevices = getAllPhysicalDevices();
@@ -881,9 +885,10 @@ void startVulkan() {
 	createFramebuffers();
 	createCommandBuffers();
 	loadTexture();
-	loadMesh();
-	createVertexBuffer();
-	createIndexBuffer();
+	meshes.push_back(cube);
+	loadMeshes(meshes);
+	createVertexBuffer(vertices);
+	createIndexBuffer(indices);
 	createUniformBuffer();
 	createDescriptorPool();
 	createDescriptorSet();
@@ -905,7 +910,7 @@ void recreateSwapchain() {
 	delete[] framebuffers;
 	
 	vkDestroyRenderPass(device, renderPass, nullptr);
-	for (int i = 0; i < amountOfImagesInSwapchain; i++) {
+	for (unsigned int i = 0; i < amountOfImagesInSwapchain; i++) {
 		vkDestroyImageView(device, imageViews[i], nullptr);
 	}
 	delete[] imageViews;
@@ -959,16 +964,16 @@ void drawFrame() {
 auto gameStartTime = std::chrono::high_resolution_clock::now();
 void updateMVP() {
 	auto frameTime = std::chrono::high_resolution_clock::now();
-	
-	float timeSinceStart = std::chrono::duration_cast<std::chrono::milliseconds>(frameTime - gameStartTime).count();
 
-	glm::mat4 model = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), timeSinceStart * glm::radians(0.1f), glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(0.0f, 0.0f, -2.0f));
-	glm::mat4 view = glm::lookAt(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	glm::mat4 projection = glm::perspective(glm::radians(60.0f), width / (float)height, 0.01f, 10.0f);
+	float deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(frameTime - gameStartTime).count();
+
+	Camera *camera = Camera::getInstance();
+	glm::mat4 model = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), deltaTime * glm::radians(0.1f), glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(0.0f, 0.0f, -2.0f));
+	glm::mat4 view = glm::lookAt(camera->getPos(), camera->getTarget(), camera->getUp());
+	glm::mat4 projection = glm::perspective(glm::radians(camera->getFov()), width / (float)height, 0.01f, 10.0f);
 	projection[1][1] *= -1;
 
-
-	ubo.lightPosition = /*glm::rotate(glm::mat4(), timeSinceStart * glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f)) * */glm::vec4(0.0f, 3.0f, 1.0f, 0.0f);
+	ubo.lightPosition = glm::rotate(glm::mat4(1.0f), deltaTime * glm::radians(-0.11f), glm::vec3(0.0f, 0.0f, 1.0f)) * glm::vec4(0.0f, 3.0f, 1.0f, 0.0f);
 	ubo.model = model;
 	ubo.view = view;
 	ubo.projection = projection;
@@ -982,16 +987,18 @@ void updateMVP() {
 void gameLoop() {
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents();
-
+		glfwSetKeyCallback(window, handleKeyboardEvent);
 		updateMVP();
-
 		drawFrame();
 	}
+
 }
 
 void shutDownVulkan() {
 	vkDeviceWaitIdle(device);
 
+    Camera *camera = Camera::getInstance();
+    delete camera;
 	depthImage.destroy();
 
 	vkDestroyDescriptorSetLayout(device, descriptorSetLayout, nullptr);
@@ -1021,7 +1028,7 @@ void shutDownVulkan() {
 
 	vkDestroyPipeline(device, pipeline, nullptr);
 	vkDestroyRenderPass(device, renderPass, nullptr);
-	for (int i = 0; i < amountOfImagesInSwapchain; i++) {
+	for (unsigned int i = 0; i < amountOfImagesInSwapchain; i++) {
 		vkDestroyImageView(device, imageViews[i], nullptr);
 	}
 	delete[] imageViews;

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/latte/code/cpp/VulcanTutorial/Camera.cpp" "/home/latte/code/cpp/VulcanTutorial/cmake-build-release/CMakeFiles/VulkanTutorial.dir/Camera.cpp.o"
   "/home/latte/code/cpp/VulcanTutorial/VulkanTutorial.cpp" "/home/latte/code/cpp/VulcanTutorial/cmake-build-release/CMakeFiles/VulkanTutorial.dir/VulkanTutorial.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

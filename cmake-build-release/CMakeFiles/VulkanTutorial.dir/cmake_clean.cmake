@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/VulkanTutorial.dir/VulkanTutorial.cpp.o"
+  "CMakeFiles/VulkanTutorial.dir/Camera.cpp.o"
   "VulkanTutorial.pdb"
   "VulkanTutorial"
 )

@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/latte/code/cpp/VulcanTutorial/Camera.h
+glm/glm.hpp
+-
+vector
+-
+
 /home/latte/code/cpp/VulcanTutorial/DepthImage.h
 VulkanUtils.h
 /home/latte/code/cpp/VulcanTutorial/VulkanUtils.h
@@ -45,6 +51,8 @@ Vertex.h
 /home/latte/code/cpp/VulcanTutorial/Vertex.h
 Mesh.h
 /home/latte/code/cpp/VulcanTutorial/Mesh.h
+Camera.h
+/home/latte/code/cpp/VulcanTutorial/Camera.h
 chrono
 -
 
@@ -53,6 +61,8 @@ GLFW/glfw3.h
 /home/latte/code/cpp/VulcanTutorial/GLFW/glfw3.h
 vulkan/vulkan.h
 /home/latte/code/cpp/VulcanTutorial/vulkan/vulkan.h
+Camera.h
+/home/latte/code/cpp/VulcanTutorial/Camera.h
 glm/glm.hpp
 -
 glm/gtc/matrix_transform.hpp
@@ -65,9 +75,9 @@ vector
 -
 fstream
 -
-vector
--
 stdexcept
+-
+sys/stat.h
 -
 
 /home/latte/code/cpp/VulcanTutorial/stb_image.h

@@ -10,20 +10,18 @@ class Mesh {
 private:
 	std::vector<Vertex> m_vertices;
 	std::vector<uint32_t> m_indices;
-	
+    const char* _path;
 public:
-	Mesh() {
+	Mesh(const char* path) : _path(path) {}
 
-	}
-
-	void create(const char* path) {
+	void create() {
 		tinyobj::attrib_t vertexAttributes;
 		std::vector<tinyobj::shape_t> shapes;
 		std::vector<tinyobj::material_t> materials;
 		std::string errorString;
 		std::string warningString;
 
-		bool success = tinyobj::LoadObj(&vertexAttributes, &shapes, &materials, &warningString, &errorString, path);
+		bool success = tinyobj::LoadObj(&vertexAttributes, &shapes, &materials, &warningString, &errorString, _path);
 
 		if (!success) {
 			throw std::runtime_error(errorString);
@@ -45,7 +43,7 @@ public:
 					vertexAttributes.normals[3 * index.normal_index + 1]
 				};
 
-				Vertex vert(pos, glm::vec3{ 0.0f, 1.0f, 1.0f }, glm::vec2{ 0, 0 }, normal);
+				Vertex vert(pos, glm::vec3{ 0.0f, 1.0f, 0.0f }, glm::vec2{ 0, 0 }, normal);
 
 				if (vertices.count(vert) == 0) {
 					vertices[vert] = vertices.size();

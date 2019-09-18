@@ -88,7 +88,34 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/Camera.cpp">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/Camera.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/DepthImage.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/EasyImage.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/Mesh.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/Vertex.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
 		<Unit filename="/home/latte/code/cpp/VulcanTutorial/VulkanTutorial.cpp">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/VulkanUtils.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/stb_image.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/tiny_obj_loader.h">
 			<Option target="VulkanTutorial"/>
 		</Unit>
 		<Unit filename="/home/latte/code/cpp/VulcanTutorial/CMakeLists.txt">

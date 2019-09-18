@@ -2,6 +2,7 @@
 #define GLFW_INCLUDE_VULKAN
 #include "GLFW/glfw3.h"
 #include "vulkan/vulkan.h"
+#include "Camera.h"
 
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #define GLM_ENABLE_EXPERIMENTAL
@@ -12,6 +13,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <stdexcept>
+#include <sys/stat.h>
 
 #ifdef _MSC_VER
 #define ASSERT_VULKAN(val)\
@@ -25,32 +28,95 @@
 		}
 #endif
 
-#include <vector>
-#include <stdexcept>
-
-VkPhysicalDevice getBestPhysicalDevice(){
-
+void handleKeyboardEvent(GLFWwindow *window, int key, int scancode, int action, int mods) {
+    Camera *camera = Camera::getInstance();
+    float speed = 0.1f;
+    if(action == GLFW_PRESS) {
+        if(key == GLFW_KEY_E) {
+            camera->changeFov(5.0f);
+            std::cout << "pressed key: " << key << std::endl;
+        }
+        if(key == GLFW_KEY_Q) {
+            camera->changeFov(-5.0f);
+            std::cout << "pressed key: " << key << std::endl;
+        }
+        if(key == GLFW_KEY_W) {
+            camera->move(glm::vec3(0.0f, speed, 0.0f));
+            camera->moveTarget(glm::vec3(0.0f, speed, 0.0f));
+            std::cout << "pressed key: " << key << std::endl;
+        }
+        if(key == GLFW_KEY_S) {
+            camera->move(glm::vec3(0.0f, -speed, 0.0f));
+            camera->moveTarget(glm::vec3(0.0f, -speed, 0.0f));
+            std::cout << "pressed key: " << key << std::endl;
+        }
+        if(key == GLFW_KEY_D) {
+            camera->move(glm::vec3(speed, 0.0f, 0.0f));
+            camera->moveTarget(glm::vec3(speed, 0.0f, 0.0f));
+            std::cout << "pressed key: " << key << std::endl;
+        }
+        if(key == GLFW_KEY_A) {
+            camera->move(glm::vec3(-speed, 0.0f, 0.0f));
+            camera->moveTarget(glm::vec3(-speed, 0.0f, 0.0f));
+            std::cout << "pressed key: " << key << std::endl;
+        }
+    }
 }
 
-std::vector<char> readFile(const std::string &filename) {
+inline bool exists (const std::string& name) {
+    struct stat buffer;
+    return (stat (name.c_str(), &buffer) == 0);
+}
+
+unsigned long getFileLength(std::ifstream& file)
+{
+    if(!file.good()) return 0;
+
+    //unsigned long pos=file.tellg();
+    file.seekg(0,std::ios::end);
+    size_t len = file.tellg();
+    file.seekg(std::ios::beg);
+
+    return len;
+}
+
+std::vector<char> readFile(const char* filename) {
+/*
+    unsigned char c;
+    std::vector<char> charBuffer;
+    FILE *shaderFile = fopen(filename, "rb");
+    if(shaderFile == NULL){
+        std::cout << "Failed reading file..." << std::endl;
+    }
+    while(!feof(shaderFile)){
+        c = fgetc(shaderFile);
+        charBuffer.push_back(c);
+    }
+    fclose(shaderFile);
+    return charBuffer;
+*/
+    std::cout << "Trying to read file: " << filename << "..." << std::endl;
+    bool fileExists = exists(filename);
+    std::cout << "File exists: " << fileExists << std::endl;
+
     std::ifstream file(filename, std::ios::binary | std::ios::ate);
-    std::cout << "1" << std::endl;
-    //if (file) {
-    size_t fileSize = (size_t)file.tellg();
-    std::cout << "2(" << fileSize << ")" << std::endl;
-    std::vector<char> fileBuffer(fileSize);
-    std::cout << "3" << std::endl;
-    file.seekg(0);
-    std::cout << "4" << std::endl;
-    file.read(fileBuffer.data(), fileSize);
-    std::cout << "5" << std::endl;
-    file.close();
-    std::cout << "6" << std::endl;
-    return fileBuffer;
-    //}
-    //else {
-    //	throw std::runtime_error("Failed to open .spv file!!!");
-    //}
+
+    if (file) {
+        //size_t fileSize = (size_t)file.tellg();
+        //file.seekg(0);
+        size_t fileSize = getFileLength(file);
+        std::cout << "Shader file size: " << fileSize << std::endl;
+
+        std::vector<char> fileBuffer(fileSize);
+
+        file.read(fileBuffer.data(), fileSize);
+        file.close();
+        //std::cout << "File buffer size: " << fileBuffer << std::endl;
+        return fileBuffer;
+    }
+    else {
+    	throw std::runtime_error("Failed to open .spv file!!!");
+    }
 }
 
 uint32_t findMemoryTypeIndex(VkPhysicalDevice physicalDevice, uint32_t typeFilter, VkMemoryPropertyFlags properties) {
