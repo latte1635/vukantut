@@ -1,10 +1,10 @@
-#include "VulkanUtils.h"
-#include "EasyImage.h"
-#include "DepthImage.h"
-#include "Vertex.h"
-#include "Mesh.h"
-#include "Camera.h"
-
+#include "../VulkanUtils.h"
+#include "../EasyImage.h"
+#include "../DepthImage.h"
+#include "../Vertex.h"
+#include "../Mesh.h"
+#include "../Camera.h"
+#include "../GameObject.h"
 #include <chrono>
 
 VkInstance instance;
@@ -466,8 +466,8 @@ void createDescriptorSetLayout() {
 void createPipeline() {
     //system("../runCompiler.sh");
 
-    std::vector<char> shaderCodeVert = readFile("../vert.spv");
-	std::vector<char> shaderCodeFrag = readFile("../frag.spv");
+    std::vector<char> shaderCodeVert = readFile("../shaders/vert.spv");
+	std::vector<char> shaderCodeFrag = readFile("../shaders/frag.spv");
 
 	createShaderModule(shaderCodeVert, &shaderModuleVert);
 	createShaderModule(shaderCodeFrag, &shaderModuleFrag);

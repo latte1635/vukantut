@@ -1,7 +1,3 @@
-//
-// Created by latte on 14/09/2019.
-//
-
 #ifndef VULKANTUTORIAL_CAMERA_H
 #define VULKANTUTORIAL_CAMERA_H
 
