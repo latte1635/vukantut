@@ -12,7 +12,7 @@ private:
 	std::vector<uint32_t> m_indices;
     const char* _path;
 public:
-	Mesh(const char* path) : _path(path) {}
+	explicit Mesh(const char* path) : _path(path) {}
 
 	void create() {
 		tinyobj::attrib_t vertexAttributes;

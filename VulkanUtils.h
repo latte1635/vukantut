@@ -41,23 +41,23 @@ void handleKeyboardEvent(GLFWwindow *window, int key, int scancode, int action, 
             std::cout << "pressed key: " << key << std::endl;
         }
         if(key == GLFW_KEY_W) {
-            camera->move(glm::vec3(0.0f, speed, 0.0f));
-            camera->moveTarget(glm::vec3(0.0f, speed, 0.0f));
+            camera->move(glm::vec3(speed, speed, 0.0f));
+            camera->moveTarget(glm::vec3(speed, speed, 0.0f));
             std::cout << "pressed key: " << key << std::endl;
         }
         if(key == GLFW_KEY_S) {
-            camera->move(glm::vec3(0.0f, -speed, 0.0f));
-            camera->moveTarget(glm::vec3(0.0f, -speed, 0.0f));
+            camera->move(glm::vec3(-speed, -speed, 0.0f));
+            camera->moveTarget(glm::vec3(-speed, -speed, 0.0f));
             std::cout << "pressed key: " << key << std::endl;
         }
         if(key == GLFW_KEY_D) {
-            camera->move(glm::vec3(speed, 0.0f, 0.0f));
-            camera->moveTarget(glm::vec3(speed, 0.0f, 0.0f));
+            camera->move(glm::vec3(speed, -speed, 0.0f));
+            camera->moveTarget(glm::vec3(speed, -speed, 0.0f));
             std::cout << "pressed key: " << key << std::endl;
         }
         if(key == GLFW_KEY_A) {
-            camera->move(glm::vec3(-speed, 0.0f, 0.0f));
-            camera->moveTarget(glm::vec3(-speed, 0.0f, 0.0f));
+            camera->move(glm::vec3(-speed, speed, 0.0f));
+            camera->moveTarget(glm::vec3(-speed, speed, 0.0f));
             std::cout << "pressed key: " << key << std::endl;
         }
     }

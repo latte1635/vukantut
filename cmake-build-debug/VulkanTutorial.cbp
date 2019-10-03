@@ -100,6 +100,12 @@
 		<Unit filename="/home/latte/code/cpp/VulcanTutorial/EasyImage.h">
 			<Option target="VulkanTutorial"/>
 		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/GameObject.cpp">
+			<Option target="VulkanTutorial"/>
+		</Unit>
+		<Unit filename="/home/latte/code/cpp/VulcanTutorial/GameObject.h">
+			<Option target="VulkanTutorial"/>
+		</Unit>
 		<Unit filename="/home/latte/code/cpp/VulcanTutorial/Mesh.h">
 			<Option target="VulkanTutorial"/>
 		</Unit>

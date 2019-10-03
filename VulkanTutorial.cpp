@@ -1,10 +1,11 @@
-#include "../VulkanUtils.h"
-#include "../EasyImage.h"
-#include "../DepthImage.h"
-#include "../Vertex.h"
-#include "../Mesh.h"
-#include "../Camera.h"
-#include "../GameObject.h"
+#include "VulkanUtils.h"
+#include "EasyImage.h"
+#include "DepthImage.h"
+#include "Vertex.h"
+#include "Mesh.h"
+#include "Camera.h"
+#include "GameObject.h"
+
 #include <chrono>
 
 VkInstance instance;
@@ -44,7 +45,7 @@ struct UniformBufferObject {
 	glm::mat4 projection;
 	glm::vec3 lightPosition;
 };
-
+std::vector<UniformBufferObject> ubos;
 UniformBufferObject ubo;
 
 VkDescriptorSetLayout descriptorSetLayout;
@@ -53,13 +54,15 @@ VkDescriptorSet descriptorSet;
 
 EasyImage pika;
 DepthImage depthImage;
-std::vector<Mesh> meshes;
-Mesh cube("../meshes/testi.obj");
-Mesh dragon("../meshes/dragon.obj");
 
-std::vector<Vertex> vertices = {};
+std::vector<GameObject *> gameObjects;
+Mesh mesh_cube("../meshes/testi.obj");
+Mesh mesh_dragon("../meshes/dragon.obj");
+GameObject cube(mesh_cube, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0.1));
+GameObject cube2(mesh_cube, glm::vec3(0, 0, -2), glm::vec3(0, 0, 0),glm::vec3(0.3));
 
-std::vector<uint32_t> indices = {};
+std::vector<Vertex> allVertices = {};
+std::vector<uint32_t> allIndices = {};
 
 void printStats(VkPhysicalDevice &device) {
 	VkPhysicalDeviceProperties properties;
@@ -142,7 +145,6 @@ void printStats(VkPhysicalDevice &device) {
 		std::cout << "Supported Presentation Mode: " << presentModes[i] << std::endl;
 	}
 
-
 	std::cout << std::endl;
 	delete[] familyProperties;
 	delete[] surfaceFormats;
@@ -159,8 +161,6 @@ void createShaderModule(const std::vector<char>& code, VkShaderModule *shaderMod
 
 	VkResult result = vkCreateShaderModule(device, &shaderCreateInfo, nullptr, shaderModule);
 	ASSERT_VULKAN(result);
-
-
 }
 
 void recreateSwapchain();
@@ -466,8 +466,8 @@ void createDescriptorSetLayout() {
 void createPipeline() {
     //system("../runCompiler.sh");
 
-    std::vector<char> shaderCodeVert = readFile("../shaders/vert.spv");
-	std::vector<char> shaderCodeFrag = readFile("../shaders/frag.spv");
+    std::vector<char> shaderCodeVert = readFile("../vert.spv");
+	std::vector<char> shaderCodeFrag = readFile("../frag.spv");
 
 	createShaderModule(shaderCodeVert, &shaderModuleVert);
 	createShaderModule(shaderCodeFrag, &shaderModuleFrag);
@@ -690,28 +690,32 @@ void loadTexture() {
 	pika.upload(device, physicalDevices[0], commandPool, queue);
 }
 
-void loadMesh(Mesh mesh) {
-    mesh.create();
-    vertices = mesh.getVertices();
-    indices = mesh.getIndices();
+void loadMesh(GameObject *gameObject) {
+    gameObject->createMesh();
+    for(Vertex vertex : gameObject->getVertices())
+        allVertices.push_back(vertex);
+    for(uint32_t index : gameObject->getIndices())
+        allIndices.push_back(index);
+    // allVertices = mesh.getVertices();
+    // allIndices = mesh.getIndices();
 }
 
-void loadMeshes(std::vector<Mesh>& meshList){
-    for (Mesh mesh : meshList) {
-        loadMesh(mesh);
+void loadMeshes(const std::vector<GameObject*> &gameObjectList) {
+    for (GameObject *gameObject : gameObjectList) {
+        loadMesh(gameObject);
     }
 }
 
-void createVertexBuffer(std::vector<Vertex> _vertices) {
-	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, _vertices, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, vertexBuffer, vertexBufferDeviceMemory);
+void createVertexBuffer() {
+	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, allVertices, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, vertexBuffer, vertexBufferDeviceMemory);
 }
 
-void createIndexBuffer(std::vector<uint32_t> _indices) {
-	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, _indices, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, indexBuffer, indexBufferDeviceMemory);
+void createIndexBuffer() {
+	createAndUploadBuffer(device, physicalDevices[0], queue, commandPool, allIndices, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, indexBuffer, indexBufferDeviceMemory);
 }
 
 void createUniformBuffer() {
-	VkDeviceSize bufferSize = sizeof(ubo);
+	VkDeviceSize bufferSize = sizeof(ubo) * gameObjects.size();
 	createBuffer(device, physicalDevices[0], bufferSize, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniformBuffer, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, uniformBufferMemory);
 }
 
@@ -793,14 +797,14 @@ void createDescriptorSet() {
 }
 
 void recordCommandBuffers() {
-	VkCommandBufferBeginInfo commandBufferBegininfo;
-	commandBufferBegininfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-	commandBufferBegininfo.pNext = nullptr;
-	commandBufferBegininfo.flags = VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT;
-	commandBufferBegininfo.pInheritanceInfo = nullptr;
+	VkCommandBufferBeginInfo commandBufferBeginInfo;
+	commandBufferBeginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+	commandBufferBeginInfo.pNext = nullptr;
+	commandBufferBeginInfo.flags = VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT;
+	commandBufferBeginInfo.pInheritanceInfo = nullptr;
 
 	for (size_t i = 0; i < amountOfImagesInSwapchain; i++) {
-		VkResult result = vkBeginCommandBuffer(commandBuffers[i], &commandBufferBegininfo);
+		VkResult result = vkBeginCommandBuffer(commandBuffers[i], &commandBufferBeginInfo);
 		ASSERT_VULKAN(result);
 
 		VkRenderPassBeginInfo renderPassBeginInfo;
@@ -845,7 +849,17 @@ void recordCommandBuffers() {
 		vkCmdBindDescriptorSets(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSet, 0, nullptr);
 
 		//vkCmdDraw(commandBuffers[i], vertices.size(), 1, 0, 0);
-		vkCmdDrawIndexed(commandBuffers[i], indices.size(), 1, 0, 0, 0);
+		//vkCmdDrawIndexed(commandBuffers[i], allIndices.size(), 1, 0, 0, 0);
+		std::cout << "Amount of indices drawn: " << allIndices.size() << std::endl;
+
+		int indexOffset = 0;
+		int vertexOffset = 0;
+		for(GameObject *gameObject : gameObjects) {
+            vkCmdDrawIndexed(commandBuffers[i], gameObject->getIndices().size(), 1, indexOffset, vertexOffset, 0);
+            indexOffset += gameObject->getIndices().size();
+            vertexOffset += gameObject->getVertices().size();
+            std::cout << "Amount of indices in mesh: " << gameObject->getIndices().size() << std::endl;
+        }
 
 		vkCmdEndRenderPass(commandBuffers[i]);
 
@@ -885,10 +899,11 @@ void startVulkan() {
 	createFramebuffers();
 	createCommandBuffers();
 	loadTexture();
-	meshes.push_back(cube);
-	loadMeshes(meshes);
-	createVertexBuffer(vertices);
-	createIndexBuffer(indices);
+	gameObjects.push_back(&cube);
+	gameObjects.push_back(&cube2);
+    loadMeshes(gameObjects);
+	createVertexBuffer();
+	createIndexBuffer();
 	createUniformBuffer();
 	createDescriptorPool();
 	createDescriptorSet();
@@ -962,36 +977,46 @@ void drawFrame() {
 }
 
 auto gameStartTime = std::chrono::high_resolution_clock::now();
-void updateMVP() {
+void updateMVP(GameObject *gameObject) {
 	auto frameTime = std::chrono::high_resolution_clock::now();
-
 	float deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(frameTime - gameStartTime).count();
 
 	Camera *camera = Camera::getInstance();
-	glm::mat4 model = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), deltaTime * glm::radians(0.1f), glm::vec3(0.0f, 0.0f, 1.0f)), glm::vec3(0.0f, 0.0f, -2.0f));
+	glm::mat4 model = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), gameObject->getScale()), deltaTime * glm::radians(0.1f), glm::vec3(0.0f, 0.0f, 1.0f)), gameObject->getPosition());
 	glm::mat4 view = glm::lookAt(camera->getPos(), camera->getTarget(), camera->getUp());
 	glm::mat4 projection = glm::perspective(glm::radians(camera->getFov()), width / (float)height, 0.01f, 10.0f);
 	projection[1][1] *= -1;
 
-	ubo.lightPosition = glm::rotate(glm::mat4(1.0f), deltaTime * glm::radians(-0.11f), glm::vec3(0.0f, 0.0f, 1.0f)) * glm::vec4(0.0f, 3.0f, 1.0f, 0.0f);
+	ubo.lightPosition = glm::rotate(glm::mat4(1.0f), deltaTime * glm::radians(-0.11f), glm::vec3(1.0f, 1.0f, 1.0f)) * glm::vec4(0.0f, 3.0f, 1.0f, 0.0f);
 	ubo.model = model;
 	ubo.view = view;
 	ubo.projection = projection;
+    ubos.push_back(ubo);
+    void* data;
+    vkMapMemory(device, uniformBufferMemory, 0, sizeof(ubo), 0, &data);
+    memcpy(data, &ubo, sizeof(ubo));
+    vkUnmapMemory(device, uniformBufferMemory);
+}
 
-	void* data;
-	vkMapMemory(device, uniformBufferMemory, 0, sizeof(ubo), 0, &data);
-	memcpy(data, &ubo, sizeof(ubo));
-	vkUnmapMemory(device, uniformBufferMemory);
+void mapUniformBufferMemory() {
+    void* data;
+    for (int i = 0; i < ubos.size(); i++) {
+        vkMapMemory(device, uniformBufferMemory, sizeof(ubo) * i, sizeof(ubo), 0, &data);
+    }
+    memcpy(data, ubos.data(), sizeof(ubo) * ubos.size());
+    vkUnmapMemory(device, uniformBufferMemory);
 }
 
 void gameLoop() {
 	while (!glfwWindowShouldClose(window)) {
-		glfwPollEvents();
+	    // Swap to glfwPollEvents() and find solution;
+		glfwWaitEvents();
 		glfwSetKeyCallback(window, handleKeyboardEvent);
-		updateMVP();
+		for(GameObject *gameObject : gameObjects)
+		    updateMVP(gameObject);
+		//mapUniformBufferMemory();
 		drawFrame();
 	}
-
 }
 
 void shutDownVulkan() {

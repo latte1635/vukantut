@@ -1,4 +1,4 @@
-/snap/clion/83/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/latte/code/cpp/VulcanTutorial
+/snap/clion/85/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/latte/code/cpp/VulcanTutorial
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/latte/code/cpp/VulcanTutorial/cmake-build-debug

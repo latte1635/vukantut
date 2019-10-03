@@ -22,6 +22,10 @@ VulkanUtils.h
 stb_image.h
 /home/latte/code/cpp/VulcanTutorial/stb_image.h
 
+/home/latte/code/cpp/VulcanTutorial/GameObject.h
+Mesh.h
+/home/latte/code/cpp/VulcanTutorial/Mesh.h
+
 /home/latte/code/cpp/VulcanTutorial/Mesh.h
 vector
 -
@@ -53,6 +57,8 @@ Mesh.h
 /home/latte/code/cpp/VulcanTutorial/Mesh.h
 Camera.h
 /home/latte/code/cpp/VulcanTutorial/Camera.h
+GameObject.h
+/home/latte/code/cpp/VulcanTutorial/GameObject.h
 chrono
 -
 

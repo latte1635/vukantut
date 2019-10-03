@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/VulkanTutorial.dir/VulkanTutorial.cpp.o"
   "CMakeFiles/VulkanTutorial.dir/Camera.cpp.o"
-  "VulkanTutorial.pdb"
+  "CMakeFiles/VulkanTutorial.dir/GameObject.cpp.o"
+  "CMakeFiles/VulkanTutorial.dir/VulkanTutorial.cpp.o"
   "VulkanTutorial"
+  "VulkanTutorial.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

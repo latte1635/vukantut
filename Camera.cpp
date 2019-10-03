@@ -1,7 +1,3 @@
-//
-// Created by latte on 14/09/2019.
-//
-
 #include "Camera.h"
 
 Camera* Camera::instance = nullptr;
