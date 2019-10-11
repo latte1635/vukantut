@@ -1,1 +1,3 @@
 # vulkantut
+
+Just me trying to make a 3D graphics engine with Vulkan and hopefully learn something useful.
